@@ -41,11 +41,14 @@ import javafx.scene.text.Font;
  * @author Steven Yi
  */
 public class BSBDropdown extends AutomatableBSBObject implements
-        ParameterListener, Randomizable {
+        ParameterListener, Randomizable, StringChannelProvider {
 
     private BSBDropdownItemList dropdownItems;
     private IntegerProperty selectedIndex = new SimpleIntegerProperty(0);
     private BooleanProperty randomizable = new SimpleBooleanProperty(true);
+    private BooleanProperty stringChannelEnabled = new SimpleBooleanProperty(false);
+
+    private StringChannel stringChannel; 
 
     IntegerProperty fontSize = new SimpleIntegerProperty(12) {
         @Override
@@ -66,6 +69,7 @@ public class BSBDropdown extends AutomatableBSBObject implements
                 param.setMax(Math.max(0, dropdownItems.size() - 1), true);
             }
         }
+        updateStringChannel();
     };
 
     private ChangeListener<Number> indexListener = (obs, old, newVal) -> {
@@ -75,6 +79,7 @@ public class BSBDropdown extends AutomatableBSBObject implements
                 p.setValue(newVal.intValue());
             }
         }
+        updateStringChannel();
     };
 
     public BSBDropdown() {
@@ -82,6 +87,8 @@ public class BSBDropdown extends AutomatableBSBObject implements
         dropdownItems.addListener(lcl);
 
         selectedIndex.addListener(indexListener);
+        stringChannel = new StringChannel();
+
     }
 
     public BSBDropdown(BSBDropdown dropdown) {
@@ -93,6 +100,9 @@ public class BSBDropdown extends AutomatableBSBObject implements
         setRandomizable(dropdown.isRandomizable());
 
         selectedIndex.addListener(indexListener);
+
+        stringChannel = new StringChannel(dropdown.stringChannel);
+        setStringChannelEnabled(dropdown.isStringChannelEnabled());
     }
 
     public static BSBObject loadFromXML(Element data) {
@@ -274,6 +284,19 @@ public class BSBDropdown extends AutomatableBSBObject implements
         return fontSize;
     }
 
+    public final void setStringChannelEnabled(boolean value) {
+        stringChannelEnabled.set(value);
+    }
+
+    @Override
+    public final boolean isStringChannelEnabled() {
+        return stringChannelEnabled.get();
+    }
+
+    public final BooleanProperty stringChannelEnabledProperty() {
+        return stringChannelEnabled;
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -424,6 +447,23 @@ public class BSBDropdown extends AutomatableBSBObject implements
     @Override
     public BSBObject deepCopy() {
         return new BSBDropdown(this);
+    }
+
+    @Override
+    public StringChannel getStringChannel() {
+        return stringChannel;
+    }
+
+    protected void updateStringChannel(){
+        String value;
+        if(dropdownItems.isEmpty()) {
+            value = "";
+        } else {
+            int max = dropdownItems.size() - 1;
+            int indx = Math.max(0, Math.min(max, getSelectedIndex()));
+            value = dropdownItems.get(indx).getValue();
+        }
+        stringChannel.setValue(value);
     }
 
 }

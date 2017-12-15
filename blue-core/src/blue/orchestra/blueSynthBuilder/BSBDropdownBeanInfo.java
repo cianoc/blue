@@ -42,13 +42,14 @@ public class BSBDropdownBeanInfo extends SimpleBeanInfo {
     private static final int PROPERTY_objectName = 3;
     private static final int PROPERTY_randomizable = 4;
     private static final int PROPERTY_selectedIndex = 5;
-    private static final int PROPERTY_x = 6;
-    private static final int PROPERTY_y = 7;
+    private static final int PROPERTY_stringChannelEnabled = 6;
+    private static final int PROPERTY_x = 7;
+    private static final int PROPERTY_y = 8;
 
     // Property array 
     /*lazy PropertyDescriptor*/
     private static PropertyDescriptor[] getPdescriptor(){
-        PropertyDescriptor[] properties = new PropertyDescriptor[8];
+        PropertyDescriptor[] properties = new PropertyDescriptor[9];
     
         try {
             properties[PROPERTY_automationAllowed] = new PropertyDescriptor ( "automationAllowed", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "isAutomationAllowed", "setAutomationAllowed" ); // NOI18N
@@ -57,6 +58,7 @@ public class BSBDropdownBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_objectName] = new PropertyDescriptor ( "objectName", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "getObjectName", "setObjectName" ); // NOI18N
             properties[PROPERTY_randomizable] = new PropertyDescriptor ( "randomizable", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "isRandomizable", "setRandomizable" ); // NOI18N
             properties[PROPERTY_selectedIndex] = new PropertyDescriptor ( "selectedIndex", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "getSelectedIndex", "setSelectedIndex" ); // NOI18N
+            properties[PROPERTY_stringChannelEnabled] = new PropertyDescriptor ( "stringChannelEnabled", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "isStringChannelEnabled", "setStringChannelEnabled" ); // NOI18N
             properties[PROPERTY_x] = new PropertyDescriptor ( "x", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "getX", "setX" ); // NOI18N
             properties[PROPERTY_y] = new PropertyDescriptor ( "y", blue.orchestra.blueSynthBuilder.BSBDropdown.class, "getY", "setY" ); // NOI18N
         }
