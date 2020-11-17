@@ -44,6 +44,7 @@
 
 package blue.plaf.netbeans;
 
+import blue.plaf.Roboto;
 import blue.plaf.BlueLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
@@ -71,7 +72,8 @@ public final class BlueLFCustoms extends LFCustoms {
         }
         
         //XXX fetch the custom font size here instead
-        Font controlFont = new Font("Dialog", Font.PLAIN, fontsize); //NOI18N
+//        Font controlFont = new Font("Dialog", Font.PLAIN, fontsize); //NOI18N
+        Font controlFont = Roboto.REGULAR.deriveFont(12.0f);
         final Color tabBarColor = new Color(63, 102, 150);
         
         Object[] result = {

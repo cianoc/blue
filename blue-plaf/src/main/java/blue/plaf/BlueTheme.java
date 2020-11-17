@@ -120,6 +120,7 @@ public class BlueTheme extends DefaultMetalTheme {
 //            System.out.println("Using blue theme file: " + propFileName);
 //        } catch (Exception e) {
             primary1 = new ColorUIResource(198, 226, 255);
+            
             primary2 = new ColorUIResource(153, 153, 204);
             primary3 = new ColorUIResource(204, 204, 255);
             secondary1 = new ColorUIResource(102, 177, 253);
@@ -213,7 +214,8 @@ public class BlueTheme extends DefaultMetalTheme {
 //     */
     @Override
     public FontUIResource getControlTextFont() {
-        return super.getControlTextFont();
+//        return super.getControlTextFont();
+        return new FontUIResource(Roboto.REGULAR.deriveFont(16.0f));        
 //        return plainFont;
     }
 //
@@ -224,7 +226,9 @@ public class BlueTheme extends DefaultMetalTheme {
 //     */
     @Override
     public FontUIResource getSystemTextFont() {
-        return super.getSystemTextFont();
+//        return super.getSystemTextFont();
+        return new FontUIResource(Roboto.REGULAR.deriveFont(16.0f));        
+
                 }
 //   
 //    /**
@@ -232,10 +236,12 @@ public class BlueTheme extends DefaultMetalTheme {
 //     *
 //     * @return the user text font
 //     */
-//    @Override
-//    public FontUIResource getUserTextFont() {
+    @Override
+    public FontUIResource getUserTextFont() {
 //        return plainFont;
-//    } 
+        return new FontUIResource(Roboto.REGULAR.deriveFont(16.0f));               
+
+    } 
 //
 //    /**
 //     * Returns the menu text font.
